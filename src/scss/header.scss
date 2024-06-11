@@ -7,4 +7,189 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  &__logo {
+    max-width: toRem(200);
+    img {
+      max-width: 100%;
+    }
+
+    @media (max-width: $tablet) {
+      width: toRem(120);
+      overflow: hidden;
+    }
+
+    @media (max-width: $mobile) {
+      width: toRem(100);
+    }
+  }
+
+  &__buttons {
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    min-width: 100px;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: #b62124;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.15;
+    transition: all 0.4s;
+
+    &_red {
+      background-color: #357827;
+    }
+
+    &:hover {
+      transform: scale(0.9);
+    }
+
+    @media (max-width: $mobile) {
+      flex: 1 1 auto;
+      width: 300px;
+      padding: 15px 22px;
+    }
+  }
+
+  &__buttons_wrap {
+    display: flex;
+
+    gap: toRem(10);
+    @media (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+.menu {
+  &__body {
+    @media (max-width: $mobile) {
+      z-index: 3;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      top: 0;
+      left: -100%;
+      transition: all 0.3s ease 0s;
+      overflow: auto;
+      background-color: #141a1d;
+      gap: ToRem(30);
+      @include adaptiveValue("padding-top", 180, 120, 768, 320, 2);
+      padding-left: toRem(15);
+      padding-right: toRem(15);
+      padding-bottom: toRem(30);
+
+      justify-content: space-between;
+
+      &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: -100%;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        @include adaptiveValue("height", 105, 72, 768, 320, 2);
+      }
+      .menu-open & {
+        left: 0;
+        &::before {
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: toRem(20);
+
+    @media (max-width: $mobile) {
+      flex-direction: column;
+      text-align: center;
+      row-gap: toRem(30);
+    }
+  }
+
+  &__item {
+  }
+
+  &__link {
+    line-height: 22px;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.4s;
+
+    &:hover {
+      color: #b62124;
+    }
+
+    @media (max-width: $mobile) {
+      font-size: toRem(40);
+      color: #fff;
+    }
+    transition: color 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        color: #775353;
+      }
+    }
+  }
+}
+
+.icon-menu {
+  display: none;
+  @media (max-width: $mobile) {
+    display: block;
+    position: relative;
+    width: toRem(40);
+    height: toRem(32);
+    cursor: pointer;
+    z-index: 5;
+    span,
+    &::before,
+    &::after {
+      content: "";
+      transition: all 0.3s ease 0s;
+      right: 0;
+      position: absolute;
+      width: 100%;
+      height: toRem(3);
+      background-color: #fff;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+    span {
+      top: calc(50% - toRem(1));
+    }
+    .menu-open & {
+      span {
+        width: 0;
+      }
+      &::before,
+      &::after {
+      }
+      &::before {
+        top: calc(50% - toRem(1));
+        transform: rotate(-45deg);
+      }
+      &::after {
+        bottom: calc(50% - toRem(1));
+        transform: rotate(45deg);
+      }
+    }
+  }
 }
